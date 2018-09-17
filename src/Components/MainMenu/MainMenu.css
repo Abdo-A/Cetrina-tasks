@@ -1,0 +1,17 @@
+.MainMenu__ToggleIcon {
+  background-color: #343539;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 5% !important;
+  height: 40px !important;
+  padding-top: 10px;
+  border-bottom-left-radius: 10px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .MainMenu__ToggleIcon {
+    width: 10% !important;
+  }
+}
