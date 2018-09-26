@@ -33,6 +33,10 @@ class Intro extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.history.push("/header");
+  }
+
   onSliderChange = value => {
     switch (value) {
       case 0:
