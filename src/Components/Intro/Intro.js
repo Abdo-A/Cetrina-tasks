@@ -4,6 +4,35 @@ import React, { Component } from "react";
 import "./Intro.css";
 
 class Intro extends Component {
+  state = {
+    sliderValue: 0
+  };
+
+  componentWillMount() {
+    switch (this.props.location.pathname) {
+      case "/header":
+        this.setState(() => ({
+          sliderValue: 0
+        }));
+        break;
+
+      case "/objectBox":
+        this.setState(() => ({
+          sliderValue: 50
+        }));
+        break;
+
+      case "/userForm":
+        this.setState(() => ({
+          sliderValue: 100
+        }));
+        break;
+
+      default:
+        break;
+    }
+  }
+
   onSliderChange = value => {
     switch (value) {
       case 0:
@@ -49,14 +78,14 @@ class Intro extends Component {
       <div>
         <Slider
           marks={this.sliderMarks}
-          defaultValue={0}
+          defaultValue={this.state.sliderValue}
           step={50}
           autoFocus
           onChange={this.onSliderChange}
           style={{
             width: "500px",
             position: "absolute",
-            top: "65%",
+            top: "85%",
             left: "50%",
             transform: "translate(-50%, -50%)"
           }}

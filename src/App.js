@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-import HeaderAndMainMenu from "./Components/HeaderAndMainMenu/HeaderAndMainMenu";
 import Routes from "./routes";
 
 import "./App.css";
