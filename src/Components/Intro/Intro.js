@@ -9,9 +9,14 @@ class Intro extends Component {
   };
 
   componentWillMount() {
-    this.props.history.push("/header");
-
     switch (this.props.location.pathname) {
+      case "/":
+        this.props.history.push("/header");
+        this.setState(() => ({
+          sliderValue: 0
+        }));
+        break;
+
       case "/header":
         this.setState(() => ({
           sliderValue: 0
@@ -87,7 +92,7 @@ class Intro extends Component {
           style={{
             width: "500px",
             position: "absolute",
-            top: "85%",
+            top: "65%",
             left: "50%",
             transform: "translate(-50%, -50%)"
           }}

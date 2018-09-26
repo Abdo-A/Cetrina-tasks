@@ -1,0 +1,24 @@
+.UsersList {
+  margin-top: 20px;
+}
+
+.UsersListHeader {
+  font-weight: bold;
+}
+
+.ListItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.UsersListLabel {
+  font-weight: bold;
+  background-color: brown;
+  color: antiquewhite;
+  padding: 0 4px;
+  margin: 0 10px;
+  border: 1px solid black;
+}

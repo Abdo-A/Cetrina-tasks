@@ -1,6 +1,8 @@
 import { Form, Icon, Input, Button, Select } from "antd";
 import React, { Component } from "react";
 
+import UsersList from "./UsersList/UsersList";
+
 import "./UserForm.css";
 
 const FormItem = Form.Item;
@@ -9,7 +11,15 @@ const Option = Select.Option;
 class UserForm extends Component {
   state = {
     output: {},
-    selectOptions: ["Sandwitch", "Potato", "Tomato"]
+    selectOptions: ["Sandwitch", "Potato", "Tomato"],
+    users: [
+      {
+        email: "abdo.mohamadeen@gmail.com",
+        name: "Abdelrahman Mohamadeen",
+        phoneNo: "1118168393",
+        selectedItem: "Potato"
+      }
+    ]
   };
 
   onFormSubmit = e => {
@@ -18,14 +28,17 @@ class UserForm extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log("Form submitted successfully");
-        this.setState(
-          () => ({
-            output: values
-          }),
-          () => {
-            console.log("state", this.state.output);
-          }
-        );
+        this.setState(() => ({
+          output: values
+        }));
+
+        let users = [...this.state.users];
+        users.push({ ...values });
+        this.setState(() => ({
+          users: users
+        }));
+
+        console.log(users);
       }
     });
   };
@@ -35,11 +48,11 @@ class UserForm extends Component {
 
     return (
       <div className="userForm">
-        <div className="formTitle">Form</div>
+        <div className="formTitle">Add</div>
         {/* Form */}
 
-        <Form onSubmit={this.onFormSubmit}>
-          <FormItem label="Name">
+        <Form onSubmit={this.onFormSubmit} layout="inline">
+          <FormItem>
             {getFieldDecorator("name", {
               rules: [{ required: true, message: "Please input your name" }]
             })(
@@ -52,7 +65,7 @@ class UserForm extends Component {
             )}
           </FormItem>
 
-          <FormItem label="Phone number">
+          <FormItem>
             {getFieldDecorator("phoneNo", {
               rules: [
                 {
@@ -71,7 +84,7 @@ class UserForm extends Component {
             )}
           </FormItem>
 
-          <FormItem label="Email">
+          <FormItem>
             {getFieldDecorator("email", {
               rules: [
                 {
@@ -93,11 +106,11 @@ class UserForm extends Component {
             )}
           </FormItem>
 
-          <FormItem label="Select">
+          <FormItem>
             {getFieldDecorator("selectedItem", {
               rules: [{ required: true, message: "Please select!" }]
             })(
-              <Select placeholder="Please select an option">
+              <Select placeholder="Select" style={{ width: "100px" }}>
                 {this.state.selectOptions
                   ? this.state.selectOptions.map(option => (
                       <Option key={option} value={option}>
@@ -111,10 +124,12 @@ class UserForm extends Component {
 
           <FormItem>
             <Button type="primary" htmlType="submit">
-              Submit
+              Add
             </Button>
           </FormItem>
         </Form>
+
+        <UsersList users={this.state.users} />
       </div>
     );
   }
