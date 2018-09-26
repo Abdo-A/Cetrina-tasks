@@ -9,6 +9,8 @@ class Intro extends Component {
   };
 
   componentWillMount() {
+    this.props.history.push("/header");
+
     switch (this.props.location.pathname) {
       case "/header":
         this.setState(() => ({
@@ -31,10 +33,6 @@ class Intro extends Component {
       default:
         break;
     }
-  }
-
-  componentDidMount() {
-    this.props.history.push("/header");
   }
 
   onSliderChange = value => {
